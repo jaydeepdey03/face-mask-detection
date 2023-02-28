@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jul 22 15:56:47 2020
-
-@author: Karan
-"""
-
-
 from keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 import keras
@@ -16,11 +8,6 @@ from keras.optimizers import Adam
 from keras.utils import load_img, img_to_array
 import cv2
 import datetime
-
-
-# UNCOMMENT THE FOLLOWING CODE TO TRAIN THE CNN FROM SCRATCH
-
-# BUILDING MODEL TO CLASSIFY BETWEEN MASK AND NO MASK
 
 model = Sequential()
 model.add(Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)))
@@ -68,7 +55,7 @@ model.save('mymodel.h5', model_saved)
 # To test for individual images
 
 mymodel = load_model('mymodel.h5')
-# test_image=image.load_img('C:/Users/Karan/Desktop/ML Datasets/Face Mask Detection/Dataset/test/without_mask/30.jpg',target_size=(150,150,3))
+
 test_image = load_img(r'./test/with_mask/1-with-mask.jpg',
                             target_size=(150, 150, 3))
 test_image
@@ -76,8 +63,6 @@ test_image = img_to_array(test_image)
 test_image = np.expand_dims(test_image, axis=0)
 mymodel.predict(test_image)[0][0]
 
-
-# IMPLEMENTING LIVE DETECTION OF FACE MASK
 
 mymodel = load_model('mymodel.h5')
 
